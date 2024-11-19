@@ -7,3 +7,9 @@
 img {
   max-width: 100%;
 }
+
+.card {
+  a {
+    text-decoration: none;
+  }
+}

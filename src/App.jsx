@@ -58,7 +58,7 @@ function App() {
       <div className="container">
         <h1>Form</h1>
 
-        <button className="btn btn-primary btn-lg" type="button" popovertarget="off-canvas-form">
+        <button className="btn btn-primary btn-lg my-3" type="button" popovertarget="off-canvas-form">
           Add
         </button>
 
@@ -188,20 +188,6 @@ function App() {
               <small id="imageHelper" className="form-text text-muted">Select the tags</small>
             </div> */}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             {/* submit */}
             <button
               type="submit"
@@ -210,7 +196,6 @@ function App() {
               Save
             </button>
           </form>
-
         </div>
 
 
@@ -228,6 +213,17 @@ function App() {
                   <div className="card-body">
                     <h4>{post.title}</h4>
                     <p>{post.content}.</p>
+                    <p>{post.category}</p>
+
+                    {post.tags.map((tag, index) => {
+                      return (
+                        <a
+                          key={index}
+                          href=''
+                          className='me-2'
+                        >{tag}</a>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
