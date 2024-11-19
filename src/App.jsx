@@ -50,6 +50,12 @@ function App() {
   };
 
 
+  // handle checkbox change
+  function handleCheckForm(e) {
+
+  }
+
+
 
 
   // render
@@ -156,10 +162,9 @@ function App() {
 
 
               {posts.map(post => {
-
-
                 return post.tags.map((tag, index) => {
                   return (
+
                     <div className="form-check" key={index}>
                       <input
                         className="form-check-input"
@@ -167,6 +172,7 @@ function App() {
                         value={tag}
                         id=""
                         name='tags'
+                        onChange={handleCheckForm}
                       />
                       <label className="form-check-label" htmlFor="flexCheckDefault">
                         {tag}
