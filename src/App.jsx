@@ -56,11 +56,14 @@ function App() {
   return (
     <>
       <div className="container">
-        <h1>Form</h1>
+        <div className="d-flex justify-content-between align-items-center">
 
-        <button className="btn btn-primary btn-lg my-3" type="button" popovertarget="off-canvas-form">
-          Add
-        </button>
+          <h1>Form</h1>
+
+          <button className="btn btn-primary btn-lg my-3" type="button" popovertarget="off-canvas-form">
+            Add
+          </button>
+        </div>
 
 
         {/* Off-canvas form */}
@@ -139,6 +142,7 @@ function App() {
                 value={formData.category}
                 onChange={handleFormField}
               >
+                <option value="">Select a category</option>
                 <option value="Programmazione" >Programmazione</option>
                 <option value="Frontend" >Frontend</option>
                 <option value="Backend" >Backend</option>
@@ -149,45 +153,28 @@ function App() {
             {/* tags */}
             <div className="mb-3">
               <label htmlFor="tags" className="form-label">Tags</label>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value="JavaScript"
-                  id="javascript"
-                  name='javascript'
-                />
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                  JavaScript
-                </label>
-              </div>
 
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value="Coding"
-                  id="coding"
-                  name='coding'
-                />
-                <label className="form-check-label" htmlFor="flexCheckChecked">
-                  Coding
-                </label>
-              </div>
 
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  value="Tutorial"
-                  id="tutorial"
-                  name='tutorial'
-                />
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                  Tutorial
-                </label>
-              </div>
-              <small id="imageHelper" className="form-text text-muted">Select the tags</small>
+              {posts.map(post => {
+
+
+                return post.tags.map((tag, index) => {
+                  return (
+                    <div className="form-check" key={index}>
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        value={tag}
+                        id=""
+                        name='tags'
+                      />
+                      <label className="form-check-label" htmlFor="flexCheckDefault">
+                        {tag}
+                      </label>
+                    </div>
+                  )
+                })
+              })}
             </div>
 
             {/* submit */}
@@ -209,9 +196,9 @@ function App() {
             return (
               <div className="col" key={post.id}>
 
-                <div className="card" style={{ minHeight: "450px" }}>
+                <div className="card rounded-3" style={{ minHeight: "450px" }}>
                   <div className="card-img">
-                    <img src={post.image} alt="" className='object-fit-cover' />
+                    <img src={post.image} alt="" className='object-fit-cover rounded-top-3' />
                   </div>
 
                   <div className="card-body">
