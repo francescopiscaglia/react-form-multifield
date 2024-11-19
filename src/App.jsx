@@ -8,6 +8,11 @@ function App() {
   // logic
   const [posts, setPosts] = useState(allPosts);
 
+  // handle form submit
+  function handleFormSubmit(e) {
+    e.preventDefault();
+  };
+
 
 
 
@@ -17,33 +22,157 @@ function App() {
       <div className="container">
         <h1>Form</h1>
 
-        {/* new post form */}
-        {/* <form onSubmit={addPost}> */}
+        <button className="btn btn-primary btn-lg" type="button" popovertarget="off-canvas-form">
+          Add
+        </button>
 
-        {/* input title */}
-        {/* <div className="mb-3">
-            <label htmlFor="postTitle" className="form-label">Add a post</label>
 
-            <input
-              type="text"
-              className="form-control"
-              id="postTitle"
-              aria-describedby="emailHelp"
-              value={newPost}
-              onChange={e => setNewPost(e.target.value)}
-              required
-            />
+        {/* Off-canvas form */}
+        <div id="off-canvas-form" popover="true" className="p-3" style={{ minHeight: "100vh" }}>
+          <div className="d-flex justify-content-between align-items-center">
+            <h3>Add a new post</h3>
+            <button className="btn btn-dark" type="button" popovertarget="off-canvas-form" popovertargetaction="hide">
+              Close
+            </button>
+          </div>
+          <p>Use the form below to add a new post to the blog</p>
 
-            <small id="emailHelp" className="form-text">Add post title</small>
-          </div> */}
 
-        {/* submit */}
-        {/* <button type="submit" className="btn btn-primary">Add</button> */}
-        {/* </form> */}
+          {/* form here */}
+          <form onSubmit={handleFormSubmit}>
+
+            {/* name */}
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">Title</label>
+              <input
+                type="text"
+                className="form-control"
+                name="title"
+                id="title"
+                aria-describedby="titleHelpers"
+                placeholder="Phyton for beginners"
+                required
+              />
+              <small id="titleHelper" className="form-text text-muted">Type the title of your post</small>
+            </div>
+
+            {/* image */}
+            <div className="mb-3">
+              <label htmlFor="image" className="form-label">Image</label>
+              <input
+                type="text"
+                className="form-control"
+                name="image"
+                id="image"
+                aria-describedby="imageHelpers"
+                placeholder="https://picsum.photos/600/400"
+                required
+              />
+              <small id="imageHelper" className="form-text text-muted">Add the image of your post</small>
+            </div>
+
+            {/* content */}
+            <div className="mb-3">
+              <label htmlFor="content" className="form-label">Content</label>
+              <textarea
+                type="text"
+                className="form-control"
+                name="content"
+                id="content"
+                aria-describedby="contentHelpers"
+                placeholder="Add your content"
+              />
+              <small id="imageHelper" className="form-text text-muted">Add the content of your post</small>
+            </div>
+
+            {/* category */}
+            <div className="mb-3">
+              <label htmlFor="category" className="form-label">Category</label>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="category"
+                id="category"
+                placeholder="Select a category"
+              >
+                <option value="1">Programmazione</option>
+                <option value="2">Frontend</option>
+                <option value="3">Backend</option>
+              </select>
+              <small id="imageHelper" className="form-text text-muted">Select the category</small>
+            </div>
+
+            {/* tags */}
+            <div className="mb-3">
+              <label htmlFor="tags" className="form-label">Tags</label>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="javascript"
+                  name='javascript'
+                />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                  JavaScript
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="coding"
+                  name='coding'
+                />
+                <label className="form-check-label" htmlFor="flexCheckChecked">
+                  Coding
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="tutorial"
+                  name='tutorial'
+                />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                  Tutorial
+                </label>
+              </div>
+              <small id="imageHelper" className="form-text text-muted">Select the tags</small>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* submit */}
+            <button
+              type="submit"
+              className="btn btn-dark mt-4"
+            >
+              Save
+            </button>
+          </form>
+
+        </div>
+
 
 
         {/* posts */}
-        <div className="row row-cols-1 row-cols-md-2 g-3">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
           {posts.map(post => {
             return (
