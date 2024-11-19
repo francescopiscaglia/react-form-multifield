@@ -128,7 +128,7 @@ function App() {
             </div>
 
             {/* category */}
-            {/* <div className="mb-3">
+            <div className="mb-3">
               <label htmlFor="category" className="form-label">Category</label>
               <select
                 className="form-select"
@@ -139,12 +139,12 @@ function App() {
                 value={formData.category}
                 onChange={handleFormField}
               >
-                <option value="1">Programmazione</option>
-                <option value="2">Frontend</option>
-                <option value="3">Backend</option>
+                <option value="Programmazione" >Programmazione</option>
+                <option value="Frontend" >Frontend</option>
+                <option value="Backend" >Backend</option>
               </select>
               <small id="imageHelper" className="form-text text-muted">Select the category</small>
-            </div> */}
+            </div>
 
             {/* tags */}
             {/* <div className="mb-3">
@@ -206,10 +206,12 @@ function App() {
           {posts.map(post => {
             return (
               <div className="col" key={post.id}>
+
                 <div className="card" style={{ minHeight: "450px" }}>
                   <div className="card-img">
                     <img src={post.image} alt="" className='object-fit-cover' />
                   </div>
+
                   <div className="card-body">
                     <h4>{post.title}</h4>
                     <p>{post.content}.</p>
