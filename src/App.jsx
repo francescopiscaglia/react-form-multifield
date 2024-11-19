@@ -2,15 +2,51 @@ import { useState } from 'react'
 import './App.css'
 import allPosts from "./db/db.js"
 
+const initialFormData = {
+  title: "",
+  image: "",
+  content: "",
+  category: "",
+  tags: [],
+  isPublished: true,
+};
+
 
 function App() {
 
   // logic
   const [posts, setPosts] = useState(allPosts);
+  const [formData, setFormData] = useState(initialFormData);
 
   // handle form submit
   function handleFormSubmit(e) {
     e.preventDefault();
+
+    // creo un nuovo oggetto con un nuovo id e i dati del form
+    const newItem = {
+      id: Date.now(),
+      ...formData,
+    };
+
+    // aggiorno l'array posts con il nuovo oggetto
+    setPosts([
+      newItem,
+      ...posts
+    ]);
+
+    // resetto il form
+    setFormData(initialFormData);
+  };
+
+
+  // handle input change
+  function handleFormField(e) {
+
+    // aggiorno lo stato con il nuovo valore dell'input
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
 
@@ -41,7 +77,7 @@ function App() {
           {/* form here */}
           <form onSubmit={handleFormSubmit}>
 
-            {/* name */}
+            {/* title */}
             <div className="mb-3">
               <label htmlFor="title" className="form-label">Title</label>
               <input
@@ -51,6 +87,8 @@ function App() {
                 id="title"
                 aria-describedby="titleHelpers"
                 placeholder="Phyton for beginners"
+                value={formData.title}
+                onChange={handleFormField}
                 required
               />
               <small id="titleHelper" className="form-text text-muted">Type the title of your post</small>
@@ -66,6 +104,8 @@ function App() {
                 id="image"
                 aria-describedby="imageHelpers"
                 placeholder="https://picsum.photos/600/400"
+                value={formData.image}
+                onChange={handleFormField}
                 required
               />
               <small id="imageHelper" className="form-text text-muted">Add the image of your post</small>
@@ -81,12 +121,14 @@ function App() {
                 id="content"
                 aria-describedby="contentHelpers"
                 placeholder="Add your content"
+                value={formData.content}
+                onChange={handleFormField}
               />
               <small id="imageHelper" className="form-text text-muted">Add the content of your post</small>
             </div>
 
             {/* category */}
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label htmlFor="category" className="form-label">Category</label>
               <select
                 className="form-select"
@@ -94,16 +136,18 @@ function App() {
                 name="category"
                 id="category"
                 placeholder="Select a category"
+                value={formData.category}
+                onChange={handleFormField}
               >
                 <option value="1">Programmazione</option>
                 <option value="2">Frontend</option>
                 <option value="3">Backend</option>
               </select>
               <small id="imageHelper" className="form-text text-muted">Select the category</small>
-            </div>
+            </div> */}
 
             {/* tags */}
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <label htmlFor="tags" className="form-label">Tags</label>
               <div className="form-check">
                 <input
@@ -142,7 +186,7 @@ function App() {
                 </label>
               </div>
               <small id="imageHelper" className="form-text text-muted">Select the tags</small>
-            </div>
+            </div> */}
 
 
 
