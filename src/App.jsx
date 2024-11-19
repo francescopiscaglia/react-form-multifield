@@ -147,13 +147,13 @@ function App() {
             </div>
 
             {/* tags */}
-            {/* <div className="mb-3">
+            <div className="mb-3">
               <label htmlFor="tags" className="form-label">Tags</label>
               <div className="form-check">
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="JavaScript"
                   id="javascript"
                   name='javascript'
                 />
@@ -161,11 +161,12 @@ function App() {
                   JavaScript
                 </label>
               </div>
+
               <div className="form-check">
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Coding"
                   id="coding"
                   name='coding'
                 />
@@ -173,11 +174,12 @@ function App() {
                   Coding
                 </label>
               </div>
+
               <div className="form-check">
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="Tutorial"
                   id="tutorial"
                   name='tutorial'
                 />
@@ -186,7 +188,7 @@ function App() {
                 </label>
               </div>
               <small id="imageHelper" className="form-text text-muted">Select the tags</small>
-            </div> */}
+            </div>
 
             {/* submit */}
             <button
