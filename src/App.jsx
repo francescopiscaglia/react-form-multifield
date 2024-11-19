@@ -17,26 +17,27 @@ function App() {
   // logic
   const [posts, setPosts] = useState(allPosts);
   const [formData, setFormData] = useState(initialFormData);
+  const [checkedValue, setCheckedValue] = useState([]);
 
   // handle form submit
   function handleFormSubmit(e) {
     e.preventDefault();
 
-    // creo un nuovo oggetto con un nuovo id e i dati del form
+    // Creo un nuovo oggetto con un nuovo id e i dati del form
     const newItem = {
       id: Date.now(),
       ...formData,
+      tags: checkedValue, // Aggiungo i tag selezionati
     };
 
-    // aggiorno l'array posts con il nuovo oggetto
-    setPosts([
-      newItem,
-      ...posts
-    ]);
+    // Aggiorno l'array dei post con il nuovo oggetto
+    setPosts([newItem, ...posts]);
 
-    // resetto il form
+    // Resetto il form e i tag selezionati
     setFormData(initialFormData);
+    setCheckedValue([]); // Resetta lo stato dei tag selezionati
   };
+
 
 
   // handle input change
@@ -52,7 +53,17 @@ function App() {
 
   // handle checkbox change
   function handleCheckForm(e) {
+    const { checked, value } = e.target;
 
+    setCheckedValue(prev => {
+      if (checked) {
+        // Se il tag è selezionato, aggiungilo a `checkedValue`
+        return [...prev, value];
+      } else {
+        // Se il tag è deselezionato, rimuovilo da `checkedValue`
+        return prev.filter(tag => tag !== value);
+      }
+    });
   }
 
 
@@ -73,7 +84,7 @@ function App() {
 
 
         {/* Off-canvas form */}
-        <div id="off-canvas-form" popover="true" className="p-3" style={{ minHeight: "100vh" }}>
+        <div id="off-canvas-form" popover="true" className="p-3">
           <div className="d-flex justify-content-between align-items-center">
             <h3>Add a new post</h3>
             <button className="btn btn-dark" type="button" popovertarget="off-canvas-form" popovertargetaction="hide">
